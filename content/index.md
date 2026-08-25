@@ -1,5 +1,5 @@
 ---
-title: Publishing
+title: Anthology
 publish: true
 ---
 

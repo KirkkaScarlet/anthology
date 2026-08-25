@@ -1,12 +1,12 @@
 # yaml-language-server: $schema=./quartz/plugins/quartz-plugins.schema.json
 configuration:
-  pageTitle: Publishing
+  pageTitle: Anthology
   pageTitleSuffix: ""
   enableSPA: true
   enablePopovers: true
   analytics: null
   locale: en-US
-  baseUrl: kirkkascarlet.github.io/Publishing
+  baseUrl: kirkkascarlet.github.io/anthology
   ignorePatterns:
     - private
     - templates

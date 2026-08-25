@@ -1,9 +1,9 @@
-# Publishing
+# Anthology
 
 An Obsidian vault that publishes itself to the web with
 [Quartz v5](https://quartz.jzhao.xyz).
 
-Live: <https://kirkkascarlet.github.io/Publishing>
+Live: <https://kirkkascarlet.github.io/anthology>
 
 This vault is for standalone pages — things that are not part of another
 worldbuild. Open this folder directly in Obsidian; write in `content/`.
