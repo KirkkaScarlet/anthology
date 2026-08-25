@@ -247,7 +247,9 @@ plugins:
         - tags
         - aliases
       excludedProperties: []
-      hidePropertiesView: false
+      # Frontmatter still drives <meta> tags and tag pages; it just isn't
+      # printed on the page itself.
+      hidePropertiesView: true
       delimiters: ---
       language: yaml
     order: 5
