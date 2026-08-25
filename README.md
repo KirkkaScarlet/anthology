@@ -6,10 +6,9 @@ Standalone web pages generated from notes, served by GitHub Pages at
 One repo, many unrelated things. **This folder is also an Obsidian vault** —
 open it directly in Obsidian and write in `notes/`.
 
-    notes/     what you write        (the vault; new notes land here)
-    docs/      what gets published   (generated — never hand-edit)
-    pages.conf which notes to build
-    build.sh   notes/ -> docs/
+    notes/    what you write       (the vault; new notes land here)
+    docs/     what gets published  (generated — never hand-edit)
+    build.sh  notes/ -> docs/
 
 Each page gets its own directory under `docs/` and its own URL path; the
 generated `docs/index.html` lists them. Obsidian is configured to hide `docs/`,
@@ -17,21 +16,30 @@ so you only ever see your own writing in the file explorer.
 
 ## Adding a page
 
-Add a line to `pages.conf`:
+A note publishes itself. Set `publish:` in its properties — from Obsidian's
+Properties panel, so you never leave the vault:
 
-    slug | source note (repo-relative) | eyebrow | subtitle
+    ---
+    publish: emilia
+    eyebrow: Character Profile
+    subtitle: Known to most simply as Mia
+    ---
 
-- **slug** — output directory under `docs/`, and the URL path (`/Publishing/<slug>/`)
-- **eyebrow** — small label above the title, may be empty
-- **subtitle** — italic line under the title, may be empty
+- **publish** — the URL path (`/Publishing/<publish>/`). Required; a note
+  without it is ignored, so drafts stay unpublished by default.
+- **eyebrow** — small label above the title. Omit for "Character Profile";
+  set it empty to drop the label entirely.
+- **subtitle** — italic line under the title. Optional.
+- **side** — `left` or `right`, overriding the infobox callout. Optional.
 
 Then:
 
     ./build.sh
     git add -A && git commit -m "Add <slug>" && git push
 
-`build.sh` rebuilds every page in the manifest and regenerates the index. It is
-safe to re-run; it only writes the files it generates.
+`build.sh` rebuilds every published note and regenerates the index. It is safe
+to re-run; it only writes the files it generates. Removing `publish:` from a
+note unpublishes it on the next build.
 
 ## Editing an existing page
 
@@ -56,7 +64,7 @@ the note as Obsidian already writes it, with no extra syntax:
 
 Empty sections are skipped with a warning rather than emitting a blank heading.
 
-For a one-off outside the manifest:
+For a one-off, bypassing the vault scan:
 
     python3 build.py note.md -o out.html --subtitle "An epithet"
     python3 build.py note.md -o out.html --side left    # override the callout

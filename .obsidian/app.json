@@ -1,6 +1,6 @@
 {
   "alwaysUpdateLinks": true,
-  "propertiesInDocument": "hidden",
+  "propertiesInDocument": "visible",
   "attachmentFolderPath": "notes/attachments",
   "newFileLocation": "folder",
   "newFileFolderPath": "notes",

@@ -1,8 +1,18 @@
 #!/usr/bin/env python3
 """
-Build a standalone, shareable HTML page from an Obsidian character note.
+Build standalone, shareable HTML pages from Obsidian character notes.
 
-    python3 build.py "Emilia Lynn Ravnskov.md" -o index.html
+    python3 build.py --all                 # every note with a `publish:` property
+    python3 build.py note.md -o out.html   # one note, explicitly
+
+A note opts in by setting `publish:` in its frontmatter — editable from
+Obsidian's Properties panel, so nothing lives outside the vault:
+
+    ---
+    publish: emilia
+    eyebrow: Character Profile
+    subtitle: Known to most simply as Mia
+    ---
 
 Reads the note's [!infobox] callout plus its ## sections and emits a single
 self-contained file: CSS inlined, portrait embedded as a data URI, no external
@@ -19,8 +29,30 @@ def inline(t: str) -> str:
     t = re.sub(r"(?<![\w_])_(?!\s)(.+?)(?<!\s)_(?![\w_])", r"<em>\1</em>", t)
     return t
 
+def split_frontmatter(text: str):
+    """Return (properties, remaining_text).
+
+    Deliberately handles only flat `key: value` pairs — that is all a page
+    declaration needs, and it keeps this script dependency-free (no PyYAML).
+    """
+    m = re.match(r"^---[ \t]*\r?\n(.*?)\r?\n---[ \t]*\r?\n?", text, re.S)
+    if not m:
+        return {}, text
+    props = {}
+    for line in m.group(1).split("\n"):
+        line = line.strip()
+        if not line or line.startswith("#") or ":" not in line:
+            continue
+        key, _, val = line.partition(":")
+        val = val.strip()
+        if len(val) >= 2 and val[0] == val[-1] and val[0] in "\"'":
+            val = val[1:-1]
+        props[key.strip()] = val
+    return props, text[m.end():]
+
 def parse(note: Path):
-    lines = note.read_text(encoding="utf-8").split("\n")
+    props, text = split_frontmatter(note.read_text(encoding="utf-8"))
+    lines = text.split("\n")
     # Strip the blockquote marker and AT MOST one space: a wider strip would
     # destroy the leading empty cell that marks a table continuation row.
     quoted = [re.sub(r"^> ?", "", l) for l in lines if l.startswith(">")]
@@ -68,7 +100,7 @@ def parse(note: Path):
             sections.append(cur)
         elif l.strip() and cur:
             cur["paras"].append(l.strip())
-    return title, image, blocks, sections, side
+    return title, image, blocks, sections, side, props
 
 def data_uri(path: Path) -> str:
     mime = mimetypes.guess_type(path.name)[0] or "image/png"
@@ -225,38 +257,127 @@ def render(title, image_uri, blocks, sections, source_name,
 </body></html>"""
     return doc, skipped
 
-def main():
-    ap = argparse.ArgumentParser()
-    ap.add_argument("note", type=Path)
-    ap.add_argument("-o", "--out", type=Path, default=Path("index.html"))
-    ap.add_argument("--fragment", action="store_true",
-                    help="emit style+markup only, for embedding in another page")
-    ap.add_argument("--eyebrow", default="Character Profile",
-                    help="small label above the title (empty string to omit)")
-    ap.add_argument("--subtitle", default="",
-                    help="italic line under the title, e.g. an alias or epithet")
-    ap.add_argument("--side", choices=("left", "right"), default=None,
-                    help="override which side the infobox floats to "
-                         "(default: whatever the note's callout says)")
-    a = ap.parse_args()
+INDEX_TEMPLATE = """<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Published pages</title>
+<style>
+  :root{color-scheme:light dark}
+  body{margin:0;padding:4rem 1.5rem;background:Canvas;color:CanvasText;
+    font:1rem/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    display:flex;justify-content:center}
+  main{max-width:34rem;width:100%}
+  h1{font-size:1.35rem;font-weight:600;margin:0 0 .35rem}
+  p{margin:0 0 2rem;opacity:.65;font-size:.9rem}
+  ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.15rem}
+  a{display:block;padding:.7rem .9rem;border-radius:5px;text-decoration:none;
+    color:inherit;border:1px solid transparent}
+  a:hover,a:focus-visible{background:color-mix(in srgb,CanvasText 6%,transparent);
+    border-color:color-mix(in srgb,CanvasText 14%,transparent);outline:none}
+</style>
+</head><body>
+<main>
+  <h1>Published pages</h1>
+  <p>Standalone pages generated from notes.</p>
+  <ul>
+{items}
+  </ul>
+</main>
+</body></html>
+"""
 
-    title, image, blocks, sections, side = parse(a.note)
-    side = a.side or side
+def build_one(note: Path, out: Path, fragment=False,
+              eyebrow=None, subtitle=None, side=None):
+    """Convert one note. Explicit arguments win over the note's properties."""
+    title, image, blocks, sections, note_side, props = parse(note)
+    side     = side     or props.get("side") or note_side
+    eyebrow  = eyebrow  if eyebrow  is not None else props.get("eyebrow", "Character Profile")
+    subtitle = subtitle if subtitle is not None else props.get("subtitle", "")
+
     uri = ""
     if image:
-        img = next((p for p in a.note.parent.rglob(image)), None) \
-           or next((p for p in a.note.parent.parent.rglob(image)), None)
+        # Wikilinks resolve vault-wide, so search upward from the note.
+        img = next((p for p in note.parent.rglob(image)), None) \
+           or next((p for p in note.parent.parent.rglob(image)), None)
         if img:
             uri = data_uri(img)
         else:
             print(f"  ! portrait not found: {image}", file=sys.stderr)
 
-    doc, skipped = render(title, uri, blocks, sections, a.note.name,
-                          a.fragment, a.eyebrow, a.subtitle, side)
-    a.out.write_text(doc, encoding="utf-8")
-    print(f"  {a.out}  ({len(doc)/1024:.0f} KB, infobox {side})")
-    for s in skipped:
-        print(f"  ! skipped empty section: ## {s}", file=sys.stderr)
+    doc, skipped = render(title, uri, blocks, sections, note.name,
+                          fragment, eyebrow, subtitle, side)
+    out.parent.mkdir(parents=True, exist_ok=True)
+    out.write_text(doc, encoding="utf-8")
+    print(f"  {out}  ({len(doc)/1024:.0f} KB, infobox {side})")
+    for sec in skipped:
+        print(f"  ! {note.name}: skipped empty section: ## {sec}", file=sys.stderr)
+    return title
+
+
+def build_all(notes_dir: Path, out_dir: Path):
+    """Build every note carrying a `publish:` property, then the site index."""
+    pages, seen = [], {}
+    for note in sorted(notes_dir.rglob("*.md")):
+        props, _ = split_frontmatter(note.read_text(encoding="utf-8"))
+        slug = props.get("publish", "").strip().strip("/")
+        if not slug:
+            continue
+        if slug in seen:
+            print(f"  ! duplicate publish slug {slug!r}: {note.name} clashes with "
+                  f"{seen[slug].name} — skipping", file=sys.stderr)
+            continue
+        seen[slug] = note
+        title = build_one(note, out_dir / slug / "index.html")
+        pages.append((slug, title or slug))
+
+    if not pages:
+        print(f"  ! no notes in {notes_dir}/ have a `publish:` property",
+              file=sys.stderr)
+
+    items = "\n".join(
+        f'    <li><a href="{html.escape(s)}/">{html.escape(t)}</a></li>'
+        for s, t in sorted(pages, key=lambda r: r[1].lower()))
+    (out_dir / "index.html").write_text(
+        INDEX_TEMPLATE.replace("{items}", items), encoding="utf-8")
+    print(f"  {out_dir}/index.html  ({len(pages)} page"
+          f"{'s' if len(pages) != 1 else ''})")
+
+
+def main():
+    ap = argparse.ArgumentParser(
+        description="Build shareable HTML pages from Obsidian notes.")
+    ap.add_argument("note", nargs="?", type=Path,
+                    help="a single note; omit when using --all")
+    ap.add_argument("--all", action="store_true",
+                    help="build every note in --notes that has a `publish:` property")
+    ap.add_argument("--notes", type=Path, default=Path("notes"),
+                    help="vault folder to scan with --all (default: notes)")
+    ap.add_argument("-o", "--out", type=Path,
+                    help="output file, or output directory with --all "
+                         "(default: index.html / docs)")
+    ap.add_argument("--fragment", action="store_true",
+                    help="emit style+markup only, for embedding in another page")
+    ap.add_argument("--eyebrow", default=None,
+                    help="override the note's eyebrow (empty string to omit)")
+    ap.add_argument("--subtitle", default=None,
+                    help="override the note's subtitle")
+    ap.add_argument("--side", choices=("left", "right"), default=None,
+                    help="override which side the infobox floats to "
+                         "(default: whatever the note's callout says)")
+    a = ap.parse_args()
+
+    if a.all:
+        if a.note:
+            ap.error("give a note or --all, not both")
+        build_all(a.notes, a.out or Path("docs"))
+        return
+
+    if not a.note:
+        ap.error("give a note path, or --all to build the whole vault")
+    build_one(a.note, a.out or Path("index.html"),
+              a.fragment, a.eyebrow, a.subtitle, a.side)
+
 
 if __name__ == "__main__":
     main()
