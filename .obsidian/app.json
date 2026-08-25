@@ -1,7 +1,7 @@
 {
   "alwaysUpdateLinks": true,
   "propertiesInDocument": "visible",
-  "attachmentFolderPath": "content/attachments",
+  "attachmentFolderPath": "./attachments",
   "newFileLocation": "folder",
   "newFileFolderPath": "content",
   "userIgnoreFilters": [

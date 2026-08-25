@@ -20,12 +20,34 @@ A note goes live only if its frontmatter says so:
 No `publish: true`, no page. Drafts are private by default — that is the
 `explicit-publish` plugin, the same gate the Asteria site uses.
 
-The **URL comes from the file path**, not from a property:
+The **URL comes from the file path**, not from a property. Folders become URL
+segments, and a folder's `index.md` becomes the folder's own page.
 
-    content/Alexis Ravnskov.md        ->  /alexis-ravnskov
-    content/Characters/Someone.md     ->  /characters/someone
+## One folder per entry
 
-So renaming a note changes its URL, and folders become URL segments.
+Each entry — a character, a small worldbuild, whatever — gets its own folder,
+holding its pages and its own images:
+
+    content/
+      index.md                        ->  /anthology/          (this landing page)
+      Alexis Ravnskov/
+        index.md                      ->  /anthology/alexis-ravnskov/
+        attachments/                      images for this entry only
+        Emilia Lynn Ravnskog.md           no publish: -> stays private
+
+Entries are independent. Deleting a folder removes an entry cleanly, with no
+dangling images or links left behind elsewhere.
+
+To give an entry more pages, add siblings next to its `index.md`:
+
+    Alexis Ravnskov/Gameplay.md       ->  /anthology/alexis-ravnskov/gameplay
+
+That is also how you would build Fandom-style sections: each is a real page
+with a real URL, no JavaScript needed.
+
+Folder and file names are slugified for the URL, so `Alexis Ravnskov/` stays
+readable in Obsidian while the URL reads `/alexis-ravnskov/`. Renaming a note
+or folder changes its URL.
 
 ## Deploying
 

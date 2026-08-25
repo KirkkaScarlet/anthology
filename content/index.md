@@ -3,8 +3,9 @@ title: Anthology
 publish: true
 ---
 
-Standalone pages, written in Obsidian and published with Quartz.
+Separate pieces of writing, collected. The entries below are independent —
+they don't share a world unless they say so.
 
-## Characters
+## Entries
 
-- [[Alexis Ravnskov]]
+- [[Alexis Ravnskov/index|Alexis Ravnskov]] — Guildmaster of the Merchant's Guild
