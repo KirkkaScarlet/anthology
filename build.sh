@@ -5,6 +5,10 @@
 set -euo pipefail
 cd "$(dirname "$0")"
 
+# Tell GitHub Pages to serve these files verbatim. Without this, Jekyll
+# processes the directory and replaces the generated pages with its own theme.
+mkdir -p docs && touch docs/.nojekyll
+
 built=()
 
 while IFS='|' read -r slug note eyebrow subtitle; do
