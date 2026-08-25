@@ -38,8 +38,12 @@ Then:
     git add -A && git commit -m "Add <slug>" && git push
 
 `build.sh` rebuilds every published note and regenerates the index. It is safe
-to re-run; it only writes the files it generates. Removing `publish:` from a
-note unpublishes it on the next build.
+to re-run.
+
+Renaming a slug or removing `publish:` also **deletes the old page** on the next
+build, so a renamed page does not linger at its previous URL. Pruning is limited
+to what a previous build recorded in `docs/.generated`, so anything you add to
+`docs/` by hand is left alone.
 
 ## Editing an existing page
 

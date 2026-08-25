@@ -18,7 +18,7 @@ Reads the note's [!infobox] callout plus its ## sections and emits a single
 self-contained file: CSS inlined, portrait embedded as a data URI, no external
 requests. Drop the result on GitHub Pages, Netlify, or email it.
 """
-import argparse, base64, html, mimetypes, re, sys
+import argparse, base64, html, mimetypes, re, shutil, sys
 from pathlib import Path
 
 # ---------- tiny markdown inline renderer -------------------------------
@@ -315,8 +315,39 @@ def build_one(note: Path, out: Path, fragment=False,
     return title
 
 
+MANIFEST = ".generated"
+
+def _previous_slugs(out_dir: Path):
+    """Slugs the last build produced.
+
+    Pruning is deliberately limited to this record, so a directory you put in
+    docs/ by hand is never at risk. The first time round there is no record,
+    so fall back to "directories that contain an index.html" — those can only
+    have come from an earlier build.
+    """
+    f = out_dir / MANIFEST
+    if f.exists():
+        return {l.strip() for l in f.read_text(encoding="utf-8").splitlines() if l.strip()}
+    return {d.name for d in out_dir.iterdir()
+            if d.is_dir() and (d / "index.html").exists()}
+
+
+def _prune(out_dir: Path, stale):
+    """Delete output for slugs that are no longer published."""
+    for slug in sorted(stale):
+        # Defensive: only ever a plain directory name directly under out_dir.
+        if not slug or slug.startswith(".") or "/" in slug or "\\" in slug:
+            continue
+        target = out_dir / slug
+        if target.is_dir() and target.resolve().parent == out_dir.resolve():
+            shutil.rmtree(target)
+            print(f"  - removed {out_dir}/{slug}/ (no longer published)")
+
+
 def build_all(notes_dir: Path, out_dir: Path):
     """Build every note carrying a `publish:` property, then the site index."""
+    out_dir.mkdir(parents=True, exist_ok=True)
+    previous = _previous_slugs(out_dir)
     pages, seen = [], {}
     for note in sorted(notes_dir.rglob("*.md")):
         props, _ = split_frontmatter(note.read_text(encoding="utf-8"))
@@ -335,6 +366,9 @@ def build_all(notes_dir: Path, out_dir: Path):
         print(f"  ! no notes in {notes_dir}/ have a `publish:` property",
               file=sys.stderr)
 
+    current = {slug for slug, _ in pages}
+    _prune(out_dir, previous - current)
+
     items = "\n".join(
         f'    <li><a href="{html.escape(s)}/">{html.escape(t)}</a></li>'
         for s, t in sorted(pages, key=lambda r: r[1].lower()))
@@ -342,6 +376,10 @@ def build_all(notes_dir: Path, out_dir: Path):
         INDEX_TEMPLATE.replace("{items}", items), encoding="utf-8")
     print(f"  {out_dir}/index.html  ({len(pages)} page"
           f"{'s' if len(pages) != 1 else ''})")
+
+    # Record what this build owns, so the next one knows what it may remove.
+    (out_dir / MANIFEST).write_text(
+        "\n".join(sorted(current)) + "\n" if current else "", encoding="utf-8")
 
 
 def main():
