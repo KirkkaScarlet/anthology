@@ -158,7 +158,8 @@ footer{clear:both;margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(
 }
 """
 
-def render(title, image_uri, blocks, sections, source_name, fragment=False):
+def render(title, image_uri, blocks, sections, source_name,
+           fragment=False, eyebrow="Character Profile", subtitle=""):
     def rows(b):
         out = []
         for r in b["rows"]:
@@ -186,11 +187,15 @@ def render(title, image_uri, blocks, sections, source_name, fragment=False):
         paras = "".join(f"<p>{inline(p)}</p>" for p in s["paras"])
         body.append(f"<h2>{html.escape(s['head'])}</h2>{paras}")
 
+    head = [f"<h1>{html.escape(title)}</h1>"]
+    if eyebrow:
+        head.insert(0, f"<p class='eyebrow'>{html.escape(eyebrow)}</p>")
+    if subtitle:
+        head.append(f"<p class='alias'>{inline(subtitle)}</p>")
+
     page = f"""<main class="page">
   <header class="nameplate">
-    <p class="eyebrow">Character Profile</p>
-    <h1>{html.escape(title)}</h1>
-    <p class="alias">Known to most simply as Mia</p>
+    {''.join(head)}
   </header>
   <div class="article">
     <aside class="infobox">{''.join(ib)}</aside>
@@ -207,7 +212,7 @@ def render(title, image_uri, blocks, sections, source_name, fragment=False):
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>{html.escape(title)}</title>
-<meta name="description" content="Character profile: {html.escape(title)}.">
+<meta name="description" content="{html.escape(subtitle or title)}">
 <style>{CSS}</style>
 </head><body>
 {page}
@@ -220,6 +225,10 @@ def main():
     ap.add_argument("-o", "--out", type=Path, default=Path("index.html"))
     ap.add_argument("--fragment", action="store_true",
                     help="emit style+markup only, for embedding in another page")
+    ap.add_argument("--eyebrow", default="Character Profile",
+                    help="small label above the title (empty string to omit)")
+    ap.add_argument("--subtitle", default="",
+                    help="italic line under the title, e.g. an alias or epithet")
     a = ap.parse_args()
 
     title, image, blocks, sections = parse(a.note)
@@ -232,7 +241,8 @@ def main():
         else:
             print(f"  ! portrait not found: {image}", file=sys.stderr)
 
-    doc, skipped = render(title, uri, blocks, sections, a.note.name, a.fragment)
+    doc, skipped = render(title, uri, blocks, sections, a.note.name,
+                          a.fragment, a.eyebrow, a.subtitle)
     a.out.write_text(doc, encoding="utf-8")
     print(f"  {a.out}  ({len(doc)/1024:.0f} KB, self-contained)")
     for s in skipped:

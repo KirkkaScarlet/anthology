@@ -1,45 +1,67 @@
-# Emilia Lynn Ravnskov — character page
+# Publishing
 
-A single self-contained HTML page, published with GitHub Pages.
+Standalone web pages generated from notes, served by GitHub Pages at
+<https://kirkkascarlet.github.io/Publishing/>.
 
-## How it works
+One repo, many unrelated things. Each page lives in its own directory and gets
+its own URL path; the root `index.html` lists them.
 
-The **source of truth is the Obsidian note**, not the HTML:
+## Adding a page
 
-    Saribas/Non-Saribas Content/Emilia Lynn Ravnskov.md
+Add a line to `pages.conf`:
 
-Edit there as normal, then regenerate:
+    slug | source note | eyebrow | subtitle
+
+- **slug** — output directory, and the URL path (`/Publishing/<slug>/`)
+- **eyebrow** — small label above the title, may be empty
+- **subtitle** — italic line under the title, may be empty
+
+Then:
 
     ./build.sh
+    git add -A && git commit -m "Add <slug>" && git push
 
-That rewrites `index.html` — one file with the CSS inlined and the portrait
-embedded as a data URI, so there is nothing else to upload and nothing to break.
-Commit and push, and GitHub Pages serves the new version.
+`build.sh` rebuilds every page in the manifest and regenerates the index. It is
+safe to re-run; it only writes the files it generates.
 
-Pass a different note explicitly if you ever move it:
+## Editing an existing page
 
-    ./build.sh "/some/other/note.md"
+The **source of truth is the note**, not the HTML. Edit the note wherever it
+lives — Obsidian, a plain editor — then `./build.sh` and push. Never hand-edit a
+generated `index.html`; the next build overwrites it.
 
 ## What the converter reads
 
-It understands the note exactly as Obsidian already writes it — no extra syntax:
+`build.py` turns an Obsidian-style character note into a page. It understands
+the note as Obsidian already writes it, with no extra syntax:
 
 - the first `######` inside the `[!infobox]` callout becomes the page title
-- `![[Image.png]]` inside the callout becomes the portrait
+- `![[Image.png]]` inside the callout becomes the portrait, embedded as a data URI
 - each later `######` starts a labelled block (Bio, Physical Info, …)
 - `**Label** | value |` rows become infobox entries; a row whose **first cell is
-  empty** stacks another value under the previous label (multiple relatives,
-  human vs. dragon height, and so on)
+  empty** stacks another value under the previous label — that is how the note
+  expresses multiple relatives, or human vs. dragon height
 - a row with a label but no value renders as a sub-heading
 - `##` headings outside the callout become the body sections
 
 Empty sections are skipped with a warning rather than emitting a blank heading.
 
-## Notes
+For a one-off outside the manifest:
 
-- The layout floats the infobox left so body text wraps beside it and then
-  reclaims the full width below — the thing Obsidian's `[!column]` callout
-  cannot do, because a grid track runs the full height of the callout.
-- The page is theme-aware: it follows the reader's light/dark preference.
+    python3 build.py note.md -o out.html --subtitle "An epithet"
+    python3 build.py note.md --fragment -o embed.html   # style + markup only
+
+## Design notes
+
+- Output is a **single file** — CSS inlined, images embedded, zero external
+  requests. It works on Pages, from a USB stick, or as an email attachment.
+- The infobox is **floated**, so body text wraps beside it and then reclaims the
+  full width below. Obsidian's `[!column]` callout cannot do this: it is a CSS
+  grid, and a grid track runs the full height of the callout.
+- Pages follow the reader's light/dark preference.
 - On narrow screens the infobox unfloats to full width.
-- `🟊` in the note is rendered as `★`, which has far better font coverage.
+- `🟊` in a note renders as `★`, which has far better font coverage.
+
+## Requirements
+
+Python 3, standard library only. No build tooling, no dependencies.

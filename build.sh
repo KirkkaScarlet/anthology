@@ -1,16 +1,66 @@
 #!/usr/bin/env bash
-# Regenerate index.html from the Obsidian note.
-# The markdown in the vault stays the source of truth — edit there, run this,
-# commit the result.
+# Rebuild every page listed in pages.conf, then regenerate the site index.
 set -euo pipefail
 cd "$(dirname "$0")"
 
-NOTE="${1:-$HOME/Documents/Tabletop/Worldbuilds/Saribas/Non-Saribas Content/Emilia Lynn Ravnskov.md}"
+built=()
 
-if [[ ! -f "$NOTE" ]]; then
-  echo "Note not found: $NOTE" >&2
-  echo "Pass the path explicitly:  ./build.sh /path/to/note.md" >&2
-  exit 1
-fi
+while IFS='|' read -r slug note eyebrow subtitle; do
+  [[ -z "${slug// }" || "${slug#\#}" != "$slug" ]] && continue   # skip blanks/comments
+  note="${note/#\~/$HOME}"
 
-python3 build.py "$NOTE" -o index.html
+  if [[ ! -f "$note" ]]; then
+    echo "  ! $slug: source not found — $note" >&2
+    continue
+  fi
+
+  mkdir -p "$slug"
+  python3 build.py "$note" -o "$slug/index.html" \
+          --eyebrow "$eyebrow" --subtitle "$subtitle"
+  built+=("$slug")
+done < pages.conf
+
+python3 - "${built[@]}" << 'PY'
+import html, re, sys
+from pathlib import Path
+
+rows = []
+for slug in sys.argv[1:]:
+    page = Path(slug) / "index.html"
+    m = re.search(r"<title>(.*?)</title>", page.read_text(encoding="utf-8"))
+    rows.append((slug, m.group(1) if m else slug))
+
+items = "\n".join(
+    f'    <li><a href="{html.escape(s)}/">{html.escape(t)}</a></li>' for s, t in rows)
+
+Path("index.html").write_text(f"""<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Published pages</title>
+<style>
+  :root{{color-scheme:light dark}}
+  body{{margin:0;padding:4rem 1.5rem;background:Canvas;color:CanvasText;
+    font:1rem/1.6 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    display:flex;justify-content:center}}
+  main{{max-width:34rem;width:100%}}
+  h1{{font-size:1.35rem;font-weight:600;margin:0 0 .35rem}}
+  p{{margin:0 0 2rem;opacity:.65;font-size:.9rem}}
+  ul{{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.15rem}}
+  a{{display:block;padding:.7rem .9rem;border-radius:5px;text-decoration:none;
+    color:inherit;border:1px solid transparent}}
+  a:hover,a:focus-visible{{background:color-mix(in srgb,CanvasText 6%,transparent);
+    border-color:color-mix(in srgb,CanvasText 14%,transparent);outline:none}}
+</style>
+</head><body>
+<main>
+  <h1>Published pages</h1>
+  <p>Standalone pages generated from notes.</p>
+  <ul>
+{items}
+  </ul>
+</main>
+</body></html>
+""", encoding="utf-8")
+print(f"  index.html  ({len(rows)} page{'s' if len(rows) != 1 else ''})")
+PY
