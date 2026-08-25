@@ -1,10 +1,12 @@
 {
   "alwaysUpdateLinks": true,
   "propertiesInDocument": "visible",
-  "attachmentFolderPath": "notes/attachments",
+  "attachmentFolderPath": "content/attachments",
   "newFileLocation": "folder",
-  "newFileFolderPath": "notes",
+  "newFileFolderPath": "content",
   "userIgnoreFilters": [
-    "docs/"
+    "quartz/",
+    "public/",
+    "node_modules/"
   ]
 }

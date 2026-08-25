@@ -1,91 +1,63 @@
 # Publishing
 
-Standalone web pages generated from notes, served by GitHub Pages at
-<https://kirkkascarlet.github.io/Publishing/>.
+An Obsidian vault that publishes itself to the web with
+[Quartz v5](https://quartz.jzhao.xyz).
 
-One repo, many unrelated things. **This folder is also an Obsidian vault** —
-open it directly in Obsidian and write in `notes/`.
+Live: <https://kirkkascarlet.github.io/Publishing>
 
-    notes/    what you write       (the vault; new notes land here)
-    docs/     what gets published  (generated — never hand-edit)
-    build.sh  notes/ -> docs/
+This vault is for standalone pages — things that are not part of another
+worldbuild. Open this folder directly in Obsidian; write in `content/`.
 
-Each page gets its own directory under `docs/` and its own URL path; the
-generated `docs/index.html` lists them. Obsidian is configured to hide `docs/`,
-so you only ever see your own writing in the file explorer.
+## Publishing a page
 
-## Adding a page
-
-A note publishes itself. Set `publish:` in its properties — from Obsidian's
-Properties panel, so you never leave the vault:
+A note goes live only if its frontmatter says so:
 
     ---
-    publish: emilia
-    eyebrow: Character Profile
-    subtitle: Known to most simply as Mia
+    title: Alexis Ravnskov
+    publish: true
     ---
 
-- **publish** — the URL path (`/Publishing/<publish>/`). Required; a note
-  without it is ignored, so drafts stay unpublished by default.
-- **eyebrow** — small label above the title. Omit for "Character Profile";
-  set it empty to drop the label entirely.
-- **subtitle** — italic line under the title. Optional.
-- **side** — `left` or `right`, overriding the infobox callout. Optional.
+No `publish: true`, no page. Drafts are private by default — that is the
+`explicit-publish` plugin, the same gate the Asteria site uses.
 
-Then:
+The **URL comes from the file path**, not from a property:
 
-    ./build.sh
-    git add -A && git commit -m "Add <slug>" && git push
+    content/Alexis Ravnskov.md        ->  /alexis-ravnskov
+    content/Characters/Someone.md     ->  /characters/someone
 
-`build.sh` rebuilds every published note and regenerates the index. It is safe
-to re-run.
+So renaming a note changes its URL, and folders become URL segments.
 
-Renaming a slug or removing `publish:` also **deletes the old page** on the next
-build, so a renamed page does not linger at its previous URL. Pruning is limited
-to what a previous build recorded in `docs/.generated`, so anything you add to
-`docs/` by hand is left alone.
+## Deploying
 
-## Editing an existing page
+Push to `main`. GitHub Actions builds the site and deploys it — there is no
+build output in this repo.
 
-The **source of truth is the note in `notes/`**, not the HTML. Edit it in
-Obsidian, run `./build.sh`, push. Never hand-edit anything under `docs/`; the
-next build overwrites it.
+    git add -A && git commit -m "..." && git push
 
-## What the converter reads
+## Preview locally
 
-`build.py` turns an Obsidian-style character note into a page. It understands
-the note as Obsidian already writes it, with no extra syntax:
+    npx quartz build --serve      # http://localhost:8080
 
-- the first `######` inside the `[!infobox]` callout becomes the page title
-- `![[Image.png]]` inside the callout becomes the portrait, embedded as a data URI
-- each later `######` starts a labelled block (Bio, Physical Info, …)
-- `**Label** | value |` rows become infobox entries; a row whose **first cell is
-  empty** stacks another value under the previous label — that is how the note
-  expresses multiple relatives, or human vs. dragon height
-- a row with a label but no value renders as a sub-heading
-- `##` headings outside the callout become the body sections
-- `[!infobox|left]` / `[!infobox|right]` controls which side it floats to
+First time on a new machine:
 
-Empty sections are skipped with a warning rather than emitting a blank heading.
+    npm ci
+    npx quartz plugin install
 
-For a one-off, bypassing the vault scan:
+## Theme
 
-    python3 build.py note.md -o out.html --subtitle "An epithet"
-    python3 build.py note.md -o out.html --side left    # override the callout
-    python3 build.py note.md --fragment -o embed.html   # style + markup only
+The site uses `quartz-themes` with `its-theme` / `ttrpg-dnd`, which is the
+Quartz port of the ITS Theme this vault uses in Obsidian. That is why an
+`[!infobox|right]` callout renders as a floated wiki infobox on the site
+without any custom CSS — body text wraps beside it and reclaims the full
+width below.
 
-## Design notes
+Write ordinary Obsidian markdown. Headings, lists, tables, callouts,
+wikilinks, and embeds all render; there is no per-page configuration.
 
-- Output is a **single file** — CSS inlined, images embedded, zero external
-  requests. It works on Pages, from a USB stick, or as an email attachment.
-- The infobox is **floated**, so body text wraps beside it and then reclaims the
-  full width below. Obsidian's `[!column]` callout cannot do this: it is a CSS
-  grid, and a grid track runs the full height of the callout. The same effect
-  inside Obsidian comes from the `wiki-infobox` CSS snippet in this vault.
-- Pages follow the reader's light/dark preference.
-- On narrow screens the infobox unfloats to full width.
-- `🟊` in a note renders as `★`, which has far better font coverage.
+## Layout
 
-## Requirements
-
-Python 3, standard library only. No build tooling, no dependencies.
+    content/      what you write, and what gets published
+    quartz/       Quartz itself — don't edit
+    quartz.config.yaml
+                  site settings: title, baseUrl, theme, plugins
+    public/       build output (gitignored)

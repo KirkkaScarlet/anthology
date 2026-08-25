@@ -1,19 +1,21 @@
-# Obsidian per-machine workspace state (not part of vault content)
+# ---- Quartz build artifacts -------------------------------------------
+node_modules/
+public/
+.quartz/
+.quartz-cache/
+tsconfig.tsbuildinfo
+prof/
+
+# ---- Obsidian ----------------------------------------------------------
+# .obsidian IS tracked here: the vault config (theme, plugins, snippets) is
+# part of this repo so the vault is portable. Only per-machine state is not.
 **/.obsidian/workspace.json
 **/.obsidian/workspace-mobile.json
 **/.obsidian/workspace.json.bak
 **/.obsidian/cache
-
-# Obsidian sync-conflict files (from Syncthing / iCloud / etc.)
 **/.obsidian/*.sync-conflict-*.json
-
-# Obsidian trash — user-managed, not source of truth
 **/.trash/
 
-# OS cruft
+# ---- OS cruft ----------------------------------------------------------
 .DS_Store
 Thumbs.db
-
-# Python
-__pycache__/
-*.pyc
