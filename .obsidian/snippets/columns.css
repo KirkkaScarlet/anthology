@@ -1,0 +1,14 @@
+/* Uneven [!column] widths — usage: > [!column|w-2-1] */
+.callout[data-callout*="column"][data-callout-metadata~="w-2-1"] > .callout-content {
+  grid-template-columns: 2fr 1fr;
+}
+.callout[data-callout*="column"][data-callout-metadata~="w-3-1"] > .callout-content {
+  grid-template-columns: 3fr 1fr;
+}
+/* Wiki-style: fluid body + fixed sidebar */
+.callout[data-callout*="column"][data-callout-metadata~="w-side"] > .callout-content {
+  grid-template-columns: minmax(0, 1fr) 320px;
+}
+.callout[data-callout-metadata~="w-side"] .callout[data-callout~="infobox"] {
+  max-width: none; /* let the infobox fill its column */
+}

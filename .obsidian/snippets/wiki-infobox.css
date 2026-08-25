@@ -1,0 +1,86 @@
+/* ============================================================
+   Wiki-style infobox                        (ITS Theme add-on)
+   ------------------------------------------------------------
+   Floats an [!infobox] to the side so body text wraps around it
+   and then reflows to the FULL page width once the infobox ends.
+   [!column] can't do this — it's a CSS grid, and a grid track
+   runs the whole height of the callout.
+
+   Usage — infobox FIRST, then plain markdown (no `>` quoting):
+
+       > [!infobox|left]
+       > ###### Title
+       > ...
+
+       ## Backstory
+       Text wraps beside the infobox, then goes full width below it.
+
+   Swap `left` for `right` to get the Wikipedia arrangement.
+   ============================================================ */
+
+body {
+  /* ---- WIDTH KNOB ---------------------------------------------
+     Two numbers, and the SMALLER one wins:
+       340px -> the hard cap in a full-width pane
+       45%   -> shrinks with the pane, so the text column beside it
+                never gets squeezed into a sliver
+
+     ITS Theme's readable line width is 700px, so 45% = ~315px here
+     and the percentage is what's actually binding. To go wider you
+     usually need to raise BOTH numbers.
+
+     Want a plain fixed width instead? Just write:
+         --infobox-width: 340px;
+     -------------------------------------------------------------- */
+  --infobox-width: min(340px, 45%);
+  --infobox-gutter: 1.25em;
+}
+
+/* Geometry + float, applied identically in Reading view and Live
+   Preview. The specificity here (and the !important on `float`) is
+   what overrides ITS Theme's `float: unset !important`, which would
+   otherwise drop the infobox to full width while editing. */
+body:not(.is-mobile)
+  .callout.callout.callout[data-callout~="infobox"][data-callout-metadata~="left"] {
+  float: left !important;
+  width: var(--infobox-width);
+  max-width: var(--infobox-width);
+  margin: 0 var(--infobox-gutter) 0.75em 0 !important;
+}
+
+body:not(.is-mobile)
+  .callout.callout.callout[data-callout~="infobox"][data-callout-metadata~="right"] {
+  float: right !important;
+  width: var(--infobox-width);
+  max-width: var(--infobox-width);
+  margin: 0 0 0.75em var(--infobox-gutter) !important;
+}
+
+/* If a section runs shorter than the infobox, keep the float from
+   spilling out the bottom of the note. */
+.markdown-preview-view .markdown-preview-sizer::after,
+.markdown-source-view.mod-cm6 .cm-contentContainer::after {
+  content: "";
+  display: block;
+  clear: both;
+}
+
+/* ---- Optional tweaks -------------------------------------------
+   Make section headings break the wrap instead of tucking in
+   beside the infobox — uncomment if you prefer that look:
+
+   .markdown-preview-view .callout[data-callout~="infobox"] ~ h2 {
+     clear: both;
+   }
+
+   Keep the float out of the editor (ITS Theme's default) — the
+   infobox then goes full-width in Live Preview and only floats in
+   Reading view:
+
+   .markdown-source-view.mod-cm6.is-live-preview
+     .callout[data-callout~="infobox"] {
+     float: none !important;
+     width: auto;
+     max-width: 100%;
+   }
+   ----------------------------------------------------------------- */

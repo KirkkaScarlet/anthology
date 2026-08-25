@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # Rebuild every page listed in pages.conf, then regenerate the site index.
+# Sources live in notes/ (the Obsidian vault); output goes to docs/, which is
+# what GitHub Pages serves.  Never hand-edit anything under docs/.
 set -euo pipefail
 cd "$(dirname "$0")"
 
@@ -7,15 +9,15 @@ built=()
 
 while IFS='|' read -r slug note eyebrow subtitle; do
   [[ -z "${slug// }" || "${slug#\#}" != "$slug" ]] && continue   # skip blanks/comments
-  note="${note/#\~/$HOME}"
+  note="${note/#\~/$HOME}"          # tolerate an absolute path too
 
   if [[ ! -f "$note" ]]; then
     echo "  ! $slug: source not found — $note" >&2
     continue
   fi
 
-  mkdir -p "$slug"
-  python3 build.py "$note" -o "$slug/index.html" \
+  mkdir -p "docs/$slug"
+  python3 build.py "$note" -o "docs/$slug/index.html" \
           --eyebrow "$eyebrow" --subtitle "$subtitle"
   built+=("$slug")
 done < pages.conf
@@ -26,14 +28,14 @@ from pathlib import Path
 
 rows = []
 for slug in sys.argv[1:]:
-    page = Path(slug) / "index.html"
+    page = Path("docs") / slug / "index.html"
     m = re.search(r"<title>(.*?)</title>", page.read_text(encoding="utf-8"))
     rows.append((slug, m.group(1) if m else slug))
 
 items = "\n".join(
     f'    <li><a href="{html.escape(s)}/">{html.escape(t)}</a></li>' for s, t in rows)
 
-Path("index.html").write_text(f"""<!doctype html>
+Path("docs/index.html").write_text(f"""<!doctype html>
 <html lang="en"><head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
@@ -62,5 +64,5 @@ Path("index.html").write_text(f"""<!doctype html>
 </main>
 </body></html>
 """, encoding="utf-8")
-print(f"  index.html  ({len(rows)} page{'s' if len(rows) != 1 else ''})")
+print(f"  docs/index.html  ({len(rows)} page{'s' if len(rows) != 1 else ''})")
 PY

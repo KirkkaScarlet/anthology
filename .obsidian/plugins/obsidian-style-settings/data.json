@@ -1,0 +1,17 @@
+{
+  "ITS@@select": "pathfinder-remaster",
+  "ITS@@s-d": false,
+  "ITS@@slrvb-g": false,
+  "ITS@@slrvb-b": false,
+  "ITS@@drwn": false,
+  "ITS@@nord": false,
+  "ITS@@mini": false,
+  "ITS@@notion": false,
+  "ITS@@its-d": false,
+  "ITS@@accent-color": false,
+  "ITS@@callout-style": "callout-bordered",
+  "ITS@@default-callout-quote": false,
+  "ITS@@embed-clean": true,
+  "ITS@@justified": false,
+  "ITS@@tag-text": false
+}

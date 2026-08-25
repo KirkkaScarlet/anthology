@@ -27,9 +27,13 @@ def parse(note: Path):
     body   = [l for l in lines if not l.startswith(">")]
 
     # ----- infobox: ###### headers introduce blocks; `a | b |` rows are data
-    title, image, blocks = None, None, []
+    title, image, blocks, side = None, None, [], "left"
     for l in quoted:
         if l.startswith("[!"):
+            # `> [!infobox|right]` — honour the side the note asks for
+            meta = re.match(r"\[!\w+\|?([^\]]*)\]", l)
+            if meta and "right" in meta.group(1).split():
+                side = "right"
             continue
         if l.startswith("######"):
             head = l.lstrip("#").strip()
@@ -64,7 +68,7 @@ def parse(note: Path):
             sections.append(cur)
         elif l.strip() and cur:
             cur["paras"].append(l.strip())
-    return title, image, blocks, sections
+    return title, image, blocks, sections, side
 
 def data_uri(path: Path) -> str:
     mime = mimetypes.guess_type(path.name)[0] or "image/png"
@@ -117,6 +121,7 @@ body{margin:0;background:var(--paper);color:var(--ink);
 .infobox{float:left;width:21rem;margin:.3rem 2.25rem 1.5rem 0;
   background:var(--surface);border:1px solid var(--rule);border-radius:3px;
   overflow:hidden;font-family:var(--ui)}
+.infobox.is-right{float:right;margin:.3rem 0 1.5rem 2.25rem}
 .infobox figure{margin:0}
 .infobox img{display:block;width:100%;height:auto}
 .ib-name{background:var(--amethyst);color:var(--amethyst-ink);font-family:var(--display);
@@ -159,7 +164,8 @@ footer{clear:both;margin-top:3.5rem;padding-top:1.2rem;border-top:1px solid var(
 """
 
 def render(title, image_uri, blocks, sections, source_name,
-           fragment=False, eyebrow="Character Profile", subtitle=""):
+           fragment=False, eyebrow="Character Profile", subtitle="",
+           side="left"):
     def rows(b):
         out = []
         for r in b["rows"]:
@@ -198,7 +204,7 @@ def render(title, image_uri, blocks, sections, source_name,
     {''.join(head)}
   </header>
   <div class="article">
-    <aside class="infobox">{''.join(ib)}</aside>
+    <aside class="infobox{' is-right' if side == 'right' else ''}">{''.join(ib)}</aside>
     {''.join(body)}
   </div>
   <footer>Generated from <code>{html.escape(source_name)}</code>.</footer>
@@ -229,9 +235,13 @@ def main():
                     help="small label above the title (empty string to omit)")
     ap.add_argument("--subtitle", default="",
                     help="italic line under the title, e.g. an alias or epithet")
+    ap.add_argument("--side", choices=("left", "right"), default=None,
+                    help="override which side the infobox floats to "
+                         "(default: whatever the note's callout says)")
     a = ap.parse_args()
 
-    title, image, blocks, sections = parse(a.note)
+    title, image, blocks, sections, side = parse(a.note)
+    side = a.side or side
     uri = ""
     if image:
         img = next((p for p in a.note.parent.rglob(image)), None) \
@@ -242,9 +252,9 @@ def main():
             print(f"  ! portrait not found: {image}", file=sys.stderr)
 
     doc, skipped = render(title, uri, blocks, sections, a.note.name,
-                          a.fragment, a.eyebrow, a.subtitle)
+                          a.fragment, a.eyebrow, a.subtitle, side)
     a.out.write_text(doc, encoding="utf-8")
-    print(f"  {a.out}  ({len(doc)/1024:.0f} KB, self-contained)")
+    print(f"  {a.out}  ({len(doc)/1024:.0f} KB, infobox {side})")
     for s in skipped:
         print(f"  ! skipped empty section: ## {s}", file=sys.stderr)
 

@@ -1,0 +1,10 @@
+{
+  "cssTheme": "ITS Theme",
+  "theme": "obsidian",
+  "enabledCssSnippets": [
+    "clean-embeds",
+    "columns",
+    "relationships",
+    "wiki-infobox"
+  ]
+}

@@ -1,0 +1,10 @@
+{
+  "alwaysUpdateLinks": true,
+  "propertiesInDocument": "hidden",
+  "attachmentFolderPath": "notes/attachments",
+  "newFileLocation": "folder",
+  "newFileFolderPath": "notes",
+  "userIgnoreFilters": [
+    "docs/"
+  ]
+}
