@@ -13,3 +13,18 @@
 .callout[data-callout~="infobox"] table thead:has(tr > th:empty) {
   display: none;
 }
+
+// ---------------------------------------------------------------------------
+// Section headings must not run under a floated infobox.
+//
+// The theme draws a heading's rule with a ::before that spans the heading box,
+// and a normal block box spans the full column width regardless of a float —
+// so the rule carried on underneath the infobox. Establishing a block
+// formatting context makes the heading refuse to overlap the float, so its
+// rule stops at the infobox and still runs full width once the float ends.
+//
+// Callout headings are excluded: they are already inside a narrow box.
+// ---------------------------------------------------------------------------
+article :is(h1, h2, h3, h4, h5, h6):not(.callout *) {
+  display: flow-root;
+}
