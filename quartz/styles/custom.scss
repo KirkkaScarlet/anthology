@@ -1,3 +1,15 @@
 @use "./variables.scss" as *;
 
 // put your custom CSS here!
+
+// ---------------------------------------------------------------------------
+// Wiki infobox: hide the empty header row.
+//
+// The infobox tables are label/value pairs with no column headings, but GFM
+// requires a header row for a table to parse at all — so the note carries an
+// empty one. Without this it renders as a blank band above each table.
+// ---------------------------------------------------------------------------
+.callout[data-callout~="infobox"] table thead:has(th:empty:only-child),
+.callout[data-callout~="infobox"] table thead:has(tr > th:empty) {
+  display: none;
+}

@@ -9,104 +9,97 @@ tags:
 > ###### Alexis Ravnskov
 > ![[FirSwordmaiden.png]]
 > ###### Bio
->  |
-> ---|---|
-> **Species** | Dragonkin |
-> **Nationality** | Utgardian |
-> **Age** | 164 |
-> **Place of Birth** | _Indgarde, Utgardia_ |
-> **Status** | _Alive, Lost in the Mists_ |
-> **Affiliation** | _Merchant's Guild_ |
-> **Occupation** | _Guildmaster_ |
-> **Relatives**| Eleanor Holt(Mother) |
->  | Nathaniel Holt(Father) |
->  | Alexander Ravnskov(Husband) |
->  **Relationships** | Henry Knowles(Mentor, Friend)
->  | Arthur Clausen(Friend, Bodyguard) |
->  | Alister Agrew(Friend) |
-> **Hobbies** | _Fishing_ |
-> **Likes** | _Money_, Gald |
-> **Dislikes** | _Liars, thieves_ |
+>| | |
+>|---|---|
+>|**Species** | [[Dragonkin]] |
+>|**Nationality** | Utgardian |
+>|**Age** | 164 |
+>|**Place of Birth** | _Indgarde, Utgardia_ |
+>|**Status** | _Alive, Lost in the Mists_ |
+>|**Affiliation** | _Merchant's Guild_ |
+>|**Occupation** | _Guildmaster_ |
+>|**Relatives**| Eleanor Holt(Mother) |
+>|| Nathaniel Holt(Father) |
+>|| Alexander Ravnskov(Husband) |
+>|**Relationships** | Henry Knowles(Mentor, Friend)
+>|| Arthur Clausen(Friend, Bodyguard) |
+>|| Alister Agrew(Friend) |
+>|**Hobbies** | _Fishing_ |
+>|**Likes** | _Money_, Gold |
+>|**Dislikes** | _Liars, thieves_ |
 >
 > ###### Physical Info
->  |
-> ---|---|
-> **Gender** | Female (She/Her) |
-> **Height** | 4' 7"(Human) |
->  | 7' 1"(Dragonkin) |
-> **Weight** | 90 lbs. (Human)|
->  | 270 lbs. (Dragonkin)|
->  **Eye Color** | Amethyst |
->  **Hair Color** | Amethyst |
+> | | |
+> |---|---|
+>|**Gender** | Female (She/Her) |
+>|**Height** | 4' 7"(Human) |
+>| | 7' 1"(Dragonkin) |
+>|**Weight** | 90 lbs. (Human)|
+> || 270 lbs. (Dragonkin)|
+> |**Eye Color** | Amethyst |
+> |**Hair Color** | Amethyst |
 >
 > ###### Combat Info
->  |
-> ---|---|
-> **Class** | Monk? Charisma based?
-> **Subclass** | Merchant
-> **Role** | Scout, Face?
->  |
-> **Skillset**| |
-> **Offense** | 🟊
-> **Defense** |🟊
-> **Control** |🟊
-> **Speed** |🟊
-> **Support** |🟊
+> | | |
+> |---|---|
+>|**Class** | Monk
+>|**Subclass** | Elemental Warrior
+>|**Role** | Frontliner, Battlefield Controller
+>|***Skillset***|
+>|**Offense** | 🟊🟊🟊
+>|**Defense** |🟊🟊🟊
+>|**Control** |🟊🟊🟊🟊
+>|**Speed** |🟊🟊🟊🟊🟊
+>|**Support** |🟊🟊
 
+*“So? What will it be?”*
+
+*The man mumbled a few stray words as he struggled to face his attacker. Two of his bandit guards were nearby, both incapacitated but alive. The third took off.*
+
+*“Your little plan did not pan out. So return your ill-gotten money and be on your way.” The woman spoke clearly, lowering her blade and eventually returning it to its scabbard. “Oh, and do not worry about future encounters with us. The Guild will never do business with you again, so there is nothing to worry about!” She smiled lightly as she swiped the sack of money that the man barely held in the air for her. She smiled and bowed her head just slightly in acceptance before walking away from him and towards the caravan.*
 
 ## Introduction
 
+A pureblooded [[Dragonkin]] who found herself loathing her own kind, Alexis set out on adventure in her early years seeking her calling. Her bright and outgoing attitude made her many allies along the way, though her trust in others has been betrayed more than once. Trained as a merchant by her mentor, she fell in love with travel and trade and worked until becoming the Guildmaster of the Merchant's Guild, overseeing all trade in the region.
 ## Appearance
-**Human Form**: Mia spends a significant amount of time appearing as a fairly short human girl, as it has become something of her persona. Most people who know her know her as Mia the human more than Emilia the Dragonkin. She will change into her original form or another race if she believes it will benefit her at the negotiation table, however.  
-**Dragon Form:** Emilia’s dragon form is nothing unusual for a Dragonkin. Dark purple scales coat her body and wings, and she rises up to just over seven feet. The visage she creates is far less intimidating than many of her brethren, but she can still wreak havoc if she needs to.
+
+**Human Form**: Alex, as she's called in her human form, appears as a short human girl. Her slender frame conceals her draconic background well, though the amethyst eyes and matching hair betray it quickly as they shimmer slightly in the light.
+
+**Dragon Form:** Alexis’ dragon form is nothing unusual for a Dragonkin. Her bloodline's amethyst scales coat her body as a large pair of wings wrap close around her and her tail swishes passively behind her. Her form conveys immense strength at first glance, though Alexis is quick to reveal she's honed her speed far more than her strength. 
+
+Regardless of the form she is in, a sword rests sheathed against Alexis' hip, with her hand on it's pommel. She is well dressed, exposing her position as someone with a lot of wealth. Though her clothes look quite refined, Alexis has no trouble moving around in them in any situation. Her clothes shift with her form automatically, unfolding and opening at hidden seams when transforming into her larger form, or the opposite into her smaller human form. Likely a form of magic that augments the clothing.
+
 ## Personality
-As one would expect from any **leader**, Mia is a particularly **charismatic** and **well educated** Dragonkin. She is always **friendly** toward others, and is always excited to lead conversations off track with **eccentric** stories. Her stories regularly have a tendency to be exaggerated, but whenever a serious topic comes up, **honesty** is her number one concern. That said, there is a constant hint of calculation and planning behind every word she says, making it difficult to truly grasp the angle she is working, if she is working one at all.
-At the negotiation table, a high level of **confidence** comes from the woman, gained from many years of success as she rose up the ranks of the Merchant’s Guild. Her **persuasive** abilities are attributed to her unique personality and **lively** conversations. Her **ambition** of strengthening the Merchant Guild’s position across the land drives her forward, and though she sometimes employs **misdirection** or **deception**, Mia rarely lies, especially when it would directly cause harm.
-Mia treats everyone who can pay equally. Race means little in the face of Gald, and while she wishes that were true about allegiance, that is a much more difficult topic. Her upbringing still plays a role on her attitude about her own race’s culture. There is a certain level of **racism** that lingers in the back of her mind toward Halfblood Dragonkin. Although it is something that was ingrained into her at a young age, she has largely overcome it thanks to her lengthy lifespan and ability to **adapt** and change--traits obtained from her time living and working with humans. Like many of her kin, she **worships** Uriel, the God of Light, but does not make a big deal about it much of the time. She considers her religious thoughts separate from any of her guild duties, and rarely speaks of it.
-These days, Mia focuses her long list of **resources** on strengthening her Guild. She knows it requires an **open mind**, something she has worked on developing for a long time and with lots of **patience**. The various factions all have their differences, and she may or may not agree with them, but they all have one thing in common. They all use Gald, and that means they are all potential friends.
+
+As any leader should be, Alexis is a charismatic, well-educated Dragonkin. She is always friendly toward others and is always excited to lead conversations off track with eccentric stories. While her stories tend to be exaggerated, honesty is her number one concern whenever a serious topic comes up. That said, there is a constant hint of calculation and planning behind every word she says, making it difficult to truly grasp the angle she is working, if she is working one at all.  
+
+At the negotiation table, a high level of confidence comes from the woman, gained from many years of success as she rose up the ranks of the Merchant’s Guild. Her persuasive abilities stem from her unique personality and lively conversations. Her ambition of strengthening the Merchant Guild’s position across the land drives her forward.
+
+Alexis treats everyone who can pay equally. Her upbringing tried to teach her to hate half-blooded dragonkin, but she struggled to understand the purpose, especially as she grew older and learned the value of money. Different species mean little in the face of Gold, after all.
+
+Like many of her kin, she worships Uriel, the God of Light, but does not make a big deal about it much of the time. She considers her religious thoughts separate from any of her guild duties, and rarely speaks of it.
+
+These days, Alexis focuses her long list of resources on strengthening her Guild. She knows it requires an open mind, something she has worked to develop for a long time, with lots of patience. Various factions all have their differences, and she may or may not agree with them, but they all have one thing in common. They all use Gold, and that means they are all potential friends.
+
 ## History
-Emilia was born to a pair of pureblood Dragonkin in Indgarde of the Utgardian Theocracy just over 160 years ago. Sharing the chromatic caste with her parents, her family lived a challenging but comfortable life. Difficult work got them all through the day. As Emilia grew up and learned of her world, however, it became apparent that she would never be happy there. The attitude of her people toward women and her caste limited her potential. She desired more for herself, and being trapped near the bottom of the food chain was not something she looked forward to for the next two hundred years.
-She sought an opportunity to leave her homeland and explore. And she met that opportunity, a traveling merchant by the name of Henry Knowles. Henry was visiting Indgarde to make an exchange of goods. He knew Emilia’s father through his trade, and Emilia became good friends with Henry, always trying to learn as much about the world as he could. It was from Henry that she learned about the Merchant’s Guild that he was a member of, and how it operated. When Emilia was forty, she left Indgarde with Henry and traveled with him for several years. The pair were very close friends for many years until Henry fell ill and did not survive.
-Having seen what she had over the past twenty years, Emilia, who now went by Mia thanks to Henry deciding to nickname her, headed to Cynd to officially join the Merchant’s Guild. She saw potential that the Guild could help her find what she was seeking. She spent most of her early years as a bodyguard in the Guild. It paid decently, and it was nice to travel and learn about other merchants and how they operate. There was a pattern to some of them though. Some things were always just slightly off. Under the table deals and cheating others out of money were not so uncommon, it seemed. While Henry never did any of that, at least that Mia knows of, it was clear that it was a great way to get a lot of money if you do it right. Some of these underhanded merchants made Henry look like a beggar, and he did alright for himself.
-Years went by and Mia kept working. She eventually got to the point where she was able to use her and Henry’s connections to open a storefront in Silma that sells Empire goods. Nothing extravagant, but it kept her busy for many years. However, it opened her up to being tricked, deceived and occasionally threatened, sometimes by other members of her own Guild. It didn’t sit right with her, and she wanted to make it better. She resolved herself to take action and fix these problems she saw. Being a Dragonkin and knowing that she is relatively long-lived, she paced herself. She studied and researched all she could to try and gain the upper hand over others. With dedication, she eventually rose up to obtain a high ranking position within the Guild, and after more time took the position of Leader just 11 years ago. Her patience served her well, as she had joined the Merchant’s Guild at the age of 54, meaning she’s been there for 106 years.
-Now, as leader of the Merchant’s Guild, she seeks to change the views that the other factions have of the Guilds, especially her own. That will be no easy feat considering it will likely require strengthening the bonds between those factions, and they aren’t all known for getting along well. 
+
+Alexis was born to a Eleanor and Nathan Holy, a family of Pureblood Dragonkin in Indgarde, the capital city of the Utgardian Theocracy, just over 160 years ago. Sharing her parents' chromatic caste, her family lived a challenging life, but difficult work got them all through the day. As Alexis grew and learned about her people, however, it became apparent that she would never be happy living among them. Her people's attitude toward women and her caste would limit her potential. She desired more for herself, and being trapped near the bottom of the food chain was not something she looked forward to for the few hundred years.
+
+She sought an opportunity to leave her homeland and explore. And she met that opportunity, a traveling merchant by the name of Henry Knowles. Henry often visited Indgarde and knew Alexis’ father through his trade. Whenever Henry visited, Alexis spent all her time trying to learn as much as she could about the world outside Utgardia. It was from Henry that she learned about the Merchant’s Guild that he was a member of, as well as how it operated. Enamored with the idea of traveling, she left Indgarde with Henry and traveled with him for several years, learning the trade as Henry’s apprentice. The pair grew into close friends for many years, until an illness claimed Henry’s life after thirty years of friendship.
+
+Having seen what she had over the past thirty years, Alexis, who now went by Alex thanks to Henry’s penchant to shorten everyone’s name except his own, headed to the city of Cynd to officially join the Merchant’s Guild as a full merchant instead of an apprentice. She had seen that the Guild could help her find satisfaction in her life away from her family. Despite having collected a fair bit of experience under Henry’s wing, she ended up spending most of her early years as a bodyguard in the Guild, providing escort and protection for other merchants. It paid decently, and it was nice to travel and learn about other merchants and how they operate. After time, though, she began seeing certain patterns. How some acted differently than others in their dealings. Under-the-table deals, cheating, scams, and swindling were more common than she had realized, and it seemed the Guild turned a blind eye often, possibly due to a lack of authority.
+
+She felt a similar distaste for her family and her people. But she had come to love what she’d found. She loved traveling, negotiating, and money. And so she pressed on, using her extended lifespan to formulate plans and build connections. After earning enough money to open a storefront in Silma that sold Empire goods, she stayed busy for years and kept working quietly toward her goal. Dragonkin live exceptionally long lives after all. What’s the rush?
+
+Though… one particular customer managed to convince her that time is of the essence. After all, Alexander Ravnskov courted her, and they eventually married. Human lives are much shorter than those of Dragonkin, however.
+
+After some considerable time, she eventually rose through the ranks of the Merchant’s Guild, seeing her plans truly begin when she took on the mantle of Guildmaster just 11 years ago. Patience served her well, as she’d been around so long that she was able to instantly move into action, bringing on reforms and order to the Guild, working to break down the corruption largely ignored by its own administrators.
+
+Then the Mists came for her…
 
 
 
 
-
-
-
-
-----
-
-# _**Dragonkin(Custom Species)**_
-
-**Ability Scores** Increase one ability score by 2 and a different one by 1.
-**Size** Medium. (about 7-8 feet tall in Draconic Form, and 4-6 feet tall in Human form)
-**Speed** 30 feet.
-**Age** Dragonkin reach maturity around 30 and commonly live 400 years or more.
-**Languages** You speak, read, and write Common one other language of your choosing.
-### _**Features**_
-**Dragonsblood** Choose a dragon type. Your scales and hair carry the hue of this type of dragon.Your eyes are slit-pupiled and unmistakably draconic. These features remain regardless of your Form. You also have Darkvision at a range of 60 feet.
-
-
-**Shifting Form** As an Action, you shift between your Draconic Form and your Human Form. This is a physical transformation, not an illusion. It does not register to detect magic and does not end if you are touched or take damage. 
-
-Ordinary clothing and worn gear—but not armor—you are wearing accommodate your transformation, adjusting to your new form as needed.
-
-While in Draconic Form, your wings tails, scales, and fangs are fully present. 
- - **Armored Hide** Your scales grant you a +1 bonus to AC.
- - **Winged** When you fall and aren't Incapacitated, you can subtract up to 100 feet from the fall when calculating falling damage, and you can move up to 2 feet horizontally for every 1 foot you descend.
-
-While in Human Form, your wings and tail vanish, and your scales and fangs are much less prominent. You also lose considerable height compared to your Draconic Form.
- - **Slender Build** You can move through a space narrow enough for a Small creature without squeezing.
-
-
- **Natural Guise** Changing forms makes you less recognizable to those who don't know you well. Creatures can use an Action to inspect your appearance and must succeed on an Intelligence (Investigation) check to determine if you are one and the same as your other form. The DC equals 8 + your proficiency bonus + your Charisma modifier. A creature that is very familiar with your other appearance, Dragonkin's shapeshifting abilities, or has seen your form in the past minute has advantage on this roll. 
-
-
-**Rapid Shift** You can use Shifting Form as a bonus action instead of an action. You can't use Rapid Shift again until you finish a short or long rest.
 
 
 
@@ -177,13 +170,13 @@ The woman raised her sword just slightly as she approached the terrified human.
   
 “So? What will it be?”  
   
-The man simply mumbled a few stray words as he struggled to face his attacker. Two of his guards were nearby, both incapacitated but alive. The third took off.  
+The man simply mumbled a few stray words as he struggled to face his attacker. Two of his bandit guards were nearby, both incapacitated but alive. The third took off.  
   
 “Your little plan did not pan out. So return your ill-gotten money and be on your way.” The woman spoke clearly, lowering her blade and eventually returning it to its scabbard. “Oh, and do not worry about future encounters with us. The Guild will never do business with you again, so there is nothing to worry about!” She smiled lightly as she swiped the sack of money that the man barely held in the air for her. She smiled and bowed her head just slightly in acceptance before walking away from him and towards the caravan.  
   
 When she got back, she nodded to the other guard that was present, who was nursing a slight cut on his arm. The man she stopped in front of, however, was beaming.  
   
-“Here’s the Gald you paid upfront. The gentleman that is scampering back to his safehouse does not have the goods you paid for, so you will need to settle for a refund.”  
+“Here’s the Gold you paid upfront. The gentleman that is scampering back to his safehouse does not have the goods you paid for, so you will need to settle for a refund.”  
   
 “Thank you, Mia, Arthur, for your aid. I knew something was not right with this deal, but I just couldn’t quite see it.”  
   
