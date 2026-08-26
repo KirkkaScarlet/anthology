@@ -32,8 +32,8 @@ tags:
 > | | |
 > |---|---|
 >|**Gender** | Female (She/Her) |
->|**Height** | 4' 7"(Human) |
->| | 7' 1"(Dragonkin) |
+>|**Height** | 4'7" (Human) |
+>| | 7'1" (Dragonkin) |
 >|**Weight** | 90 lbs. (Human)|
 > || 270 lbs. (Dragonkin)|
 > |**Eye Color** | Amethyst |
