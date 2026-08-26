@@ -11,40 +11,40 @@ tags:
 > ###### Bio
 >| | |
 >|---|---|
->|**Species** | [[Dragonkin]] |
->|**Nationality** | Utgardian |
->|**Age** | 164 |
+>|**Species** | _[[Dragonkin]]_ |
+>|**Nationality** | _Utgardian_ |
+>|**Age** | _164_ |
 >|**Place of Birth** | _Indgarde, Utgardia_ |
 >|**Status** | _Alive, Lost in the Mists_ |
 >|**Affiliation** | _Merchant's Guild_ |
 >|**Occupation** | _Guildmaster_ |
->|**Relatives**| Eleanor Holt(Mother) |
->|| Nathaniel Holt(Father) |
->|| Alexander Ravnskov(Husband, Deceased) |
->|**Relationships** | Henry Knowles(Mentor, Friend, Deceased)
->|| Arthur Clausen(Friend, Bodyguard) |
->|| Alister Agrew(Friend, Deceased) |
+>|**Relatives**| _Eleanor Holt(Mother)_ |
+>|| _Nathaniel Holt(Father)_ |
+>|| _Alexander Ravnskov(Husband, Deceased)_ |
+>|**Relationships** | _Henry Knowles(Mentor, Friend, Deceased)_ |
+>|| _Arthur Clausen(Friend, Bodyguard)_ |
+>|| _Alister Agrew(Friend, Deceased)_ |
 >|**Hobbies** | _Fishing_ |
->|**Likes** | _Money_, Gold |
+>|**Likes** | _Money, Gold_ |
 >|**Dislikes** | _Liars, thieves_ |
 >
 > ###### Physical Info
 > | | |
 > |---|---|
->|**Gender** | Female (She/Her) |
->|**Height** | 4'7" (Human) |
->| | 7'1" (Dragonkin) |
->|**Weight** | 90 lbs. (Human)|
-> || 270 lbs. (Dragonkin)|
-> |**Eye Color** | Amethyst |
-> |**Hair Color** | Amethyst |
+>|**Gender** | _Female (She/Her)_ |
+>|**Height** | _4'7" (Human)_ |
+>| | _7'1" (Dragonkin)_|
+>|**Weight** | _90 lbs. (Human)_|
+> || _270 lbs. (Dragonkin)_|
+> |**Eye Color** | _Amethyst_ |
+> |**Hair Color** | _Amethyst_ |
 >
 > ###### Combat Info
 > | | |
 > |---|---|
->|**Class** | Monk
->|**Subclass** | Elemental Warrior
->|**Role** | Frontliner, Battlefield Controller
+>|**Class** | _Monk_
+>|**Subclass** | _Elemental Warrior_
+>|**Role** | _Frontliner, Battlefield Controller_
 >|***Skillset***|
 >|**Offense** | 🟊🟊🟊
 >|**Defense** |🟊🟊🟊
@@ -96,3 +96,11 @@ Though… one particular customer managed to convince her that time is of the es
 After some considerable time, she eventually rose through the ranks of the Merchant’s Guild, seeing her plans truly begin when she took on the mantle of Guildmaster 14 years ago. Patience served her well, as she’d been around so long that she was able to instantly move into action, bringing on reforms and order to the Guild, working to break down the corruption largely ignored by its own administrators.
 
 Then the Mists came for her…
+
+
+
+
+
+
+##### References
+Art is Fir, from Fire Emblem: Heroes. Placeholder.
