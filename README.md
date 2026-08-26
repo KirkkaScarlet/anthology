@@ -54,7 +54,9 @@ or folder changes its URL.
 Push to `main`. GitHub Actions builds the site and deploys it — there is no
 build output in this repo.
 
-    git add -A && git commit -m "..." && git push
+    git add -A
+    git commit -m "Split the Artes into their own page"    # your own message
+    git push
 
 ## Preview locally
 
