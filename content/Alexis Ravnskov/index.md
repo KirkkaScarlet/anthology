@@ -5,6 +5,9 @@ description: Guildmaster of the Merchants' Guild
 tags:
   - character
 ---
+> [!warning] WIP - Expect Revisions
+
+
 > [!infobox|right]
 > ###### Alexis Ravnskov
 > ![[FirSwordmaiden.png]]
@@ -53,7 +56,7 @@ tags:
 >|**Speed** |🟊🟊🟊🟊🟊
 >|**Support** |🟊🟊
 
-> **WIP - Expect Revisions**
+
 
 
 *“So? What will it be?”*
