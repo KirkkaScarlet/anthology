@@ -28,3 +28,23 @@
 article :is(h1, h2, h3, h4, h5, h6):not(.callout *) {
   display: flow-root;
 }
+
+// ---------------------------------------------------------------------------
+// Infobox headings: drop the anchor link so centering is true.
+//
+// The ITS infobox styles center the headings, and Quartz appends a permalink
+// anchor inside every heading with an id — invisible at rest (opacity: 0) but
+// still in flow, at 18px of SVG plus 0.5rem margins either side. Centering
+// counts that 37px, so the visible text sat ~19px left of center.
+//
+// Removing the anchor outright is the fix rather than nudging the text: the
+// icon is aria-hidden and untabbable, and a deep link to "Biography" inside a
+// character's infobox isn't worth an off-center title. Headings in the body of
+// the note are left-aligned, so their anchors cost nothing and stay.
+// ---------------------------------------------------------------------------
+.callout[data-callout~="infobox"]
+  .callout-content
+  > :is(h1, h2, h3, h4, h5, h6)
+  > a[role="anchor"] {
+  display: none;
+}
