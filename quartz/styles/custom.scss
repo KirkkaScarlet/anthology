@@ -48,3 +48,59 @@ article :is(h1, h2, h3, h4, h5, h6):not(.callout *) {
   > a[role="anchor"] {
   display: none;
 }
+
+// ---------------------------------------------------------------------------
+// PF2e trait tags: <span class="trait uncommon">Uncommon</span>
+//
+// Small badges in the style of Pathfinder 2e trait tags. A plain `trait` is
+// the standard dark red; add `uncommon`, `rare`, or `unique` for rarity
+// colors. Obsidian uses the same rules from the pf2e-traits.css snippet, so
+// keep the two in sync.
+// ---------------------------------------------------------------------------
+.trait {
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: 0.7em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: #fff;
+  background: #8f1d1d;
+  border: 2px solid #d9c484;
+  border-radius: 2px;
+
+  &.uncommon {
+    background: #c45a1c;
+  }
+  &.rare {
+    background: #1f3f8f;
+  }
+  &.unique {
+    background: #5b2a86;
+  }
+}
+
+// ---------------------------------------------------------------------------
+// Stat block level: > ## Twinfang <span class="level">Item 1</span>
+//
+// Pins the level to the right end of the name line, as in the PF2e books.
+// Absolutely positioned rather than a flex heading: a flex heading rendered
+// wrong in Obsidian, likely because ITS draws heading rules with ::before and
+// ::after, which become flex items. The level keeps the heading's size and
+// line height, so pinning it to the top of the heading puts it on the same
+// baseline as the name. (The underline stopping short of the level is the
+// theme's own 85% --h2-border-line-width, not this rule.) Obsidian uses the
+// same rules from the pf2e-traits.css snippet; keep the two in sync.
+// ---------------------------------------------------------------------------
+.callout[data-callout="statblocks"] :is(h1, h2, h3, h4, h5, h6):has(> .level) {
+  position: relative;
+}
+
+.callout[data-callout="statblocks"] .level {
+  position: absolute;
+  top: 0;
+  right: 0;
+  white-space: nowrap;
+  text-transform: uppercase;
+}

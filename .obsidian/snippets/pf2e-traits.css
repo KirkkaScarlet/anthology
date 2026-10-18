@@ -1,0 +1,53 @@
+/* ============================================================
+   PF2e trait tags                           (ITS Theme add-on)
+   ------------------------------------------------------------
+   Small badges in the style of Pathfinder 2e trait tags.
+   A plain `trait` is the standard dark red; add a rarity class
+   for the rarity colors.
+
+   Usage:
+
+       <span class="trait uncommon">Uncommon</span> <span class="trait">Conjoined</span>
+
+   Classes: trait, trait uncommon, trait rare, trait unique
+
+   The site uses the same rules in quartz/styles/custom.scss.
+   Keep the two in sync.
+   ============================================================ */
+
+.trait {
+  display: inline-block;
+  padding: 1px 6px;
+  font-size: 0.7em;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  line-height: 1.5;
+  color: #fff;
+  background: #8f1d1d;
+  border: 2px solid #d9c484;
+  border-radius: 2px;
+}
+
+.trait.uncommon { background: #c45a1c; }
+.trait.rare     { background: #1f3f8f; }
+.trait.unique   { background: #5b2a86; }
+
+/* ------------------------------------------------------------
+   Stat block level, right-aligned on the name line:
+
+       > [!statblocks]
+       > ## Twinfang <span class="level">Item 1</span>
+   ------------------------------------------------------------ */
+
+.callout[data-callout="statblocks"] :is(h1, h2, h3, h4, h5, h6):has(> .level) {
+  position: relative;
+}
+
+.callout[data-callout="statblocks"] .level {
+  position: absolute;
+  top: 0;
+  right: 0;
+  white-space: nowrap;
+  text-transform: uppercase;
+}

@@ -5,6 +5,7 @@
     "clean-embeds",
     "columns",
     "relationships",
-    "wiki-infobox"
+    "wiki-infobox",
+    "pf2e-traits"
   ]
 }
