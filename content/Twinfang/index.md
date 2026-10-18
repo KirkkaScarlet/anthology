@@ -58,3 +58,21 @@ tags:
 > **Archetype:** This feat belongs to an archetype.
 > **Dedication:** Each archetype’s dedication feat represents your character’s dedicated effort learning a new set of abilities, making it impossible to split your focus and pursue another archetype at the same time. Once you take a dedication feat, you can’t select a different dedication feat until you complete your dedication by taking two other feats from your current archetype. You can’t retrain a dedication feat as long as you have any other feats from that archetype.
 
+
+
+> [!statblocks|full]
+> ## Twinfang Bite ◆◆ <span class="level">Feat 2</span>
+> <span class="trait">Archetype</span>
+>
+> ---
+> **Source** Homebrew
+> **Archetype** Viper
+> **Prerequisites** Viper Dedication
+> **Requirements** You are wielding a Twinfang in any form.
+> You lash out at your enemy with your Twinfang, then quickly switch forms into a follow up strike.  Make a Strike with your Twinfang's current form, then Interact to change its form and Strike the same foe. While in Dual Fangs form, you only strike with one of the swords. Both Strikes use your current multiple attack penalty.
+> 
+> If both attacks hit, combine their damage, and then add any other applicable effects from both weapons. You add any precision damage only once, to the attack of your choice. Combine the damage from both Strikes and apply resistances and weaknesses only once. This counts as two attacks when calculating your multiple attack penalty.
+> #### Traits
+> **Archetype:** This feat belongs to an archetype.
+
+
