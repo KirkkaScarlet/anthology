@@ -268,7 +268,7 @@ plugins:
     enabled: true
     options:
       theme: its-theme
-      variation: ttrpg-dnd
+      variation: ttrpg-pathfinder-remastered
   - source: github:quartz-community/obsidian-plugin-excalidraw
     enabled: true
     options:

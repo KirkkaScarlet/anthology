@@ -69,7 +69,7 @@ First time on a new machine:
 
 ## Theme
 
-The site uses `quartz-themes` with `its-theme` / `ttrpg-dnd`, which is the
+The site uses `quartz-themes` with `its-theme` / `ttrpg-pathfinder-remastered`, which is the
 Quartz port of the ITS Theme this vault uses in Obsidian. That is why an
 `[!infobox|right]` callout renders as a floated wiki infobox on the site
 without any custom CSS — body text wraps beside it and reclaims the full
