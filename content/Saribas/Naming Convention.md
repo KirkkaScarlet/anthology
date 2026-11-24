@@ -1,0 +1,11 @@
+[[Saribas]] uses a standard naming convention for all of its people, allowing only one's given name to be freely chosen by the parents.
+
+[Saribans](Sariban) always have three names in the same order: their birth home name, their given name, and then their tribal title.
+
+For example, [[T'koas Rihne Kirye]] would be a person that goes by the name Rihne, was born in the capital city of [[T'koas]], and was assigned to the [Kirye](Tribes) tribe.
+
+Upon birth, one's first and last names are automatically assigned, while the parent chooses their middle name. One's first name is the place where one's parents permanently live at the time of birth. Then the last name would be the tribe all children are placed into, the "Yun" tribe. There are no rules or requirements on choosing a given name, as the given name is a key separator between others since it is not uncommon to share a birthplace and tribal title with multiple others.
+
+From there, the parents, along with help from members of the [Aen](Tribes) tribe, raise the child and provide basic education until the age of 8. At that age, the Aen tribe tests the child in various things to determine their preferences and aptitudes. With the parents, they agree upon assigning the child to a tribe based on that information. This process is called the [[Assignment Ceremony]]. Once assigned to a tribe, that tribe takes over education for the child. All children are schooled in common things, while your tribal assignment dictates which specialties you are educated in. 
+
+This process has been refined well enough that it is rare that the child does poorly with this process as a whole, but when it does happen, the Aen tribe along with the parents may modify their decision and reassign someone to a different tribe. This is a more recent solution as the Sariban people have learned that while you can get a good understanding of others, it is never perfect, and people should ultimately be in control of their own destiny. However, the needs of the people are also factored into this process, making it a challenging issue facing their society.

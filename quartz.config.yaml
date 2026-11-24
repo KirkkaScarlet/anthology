@@ -10,6 +10,7 @@ configuration:
   ignorePatterns:
     - private
     - templates
+    - Saribas
     - .obsidian
   theme:
     fontOrigin: googleFonts

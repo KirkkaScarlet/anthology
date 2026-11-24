@@ -1,0 +1,1 @@
+An ancient level 30 sword mage. Think old man who never speaks, but is always nearby, watching. Has infinite speed.
